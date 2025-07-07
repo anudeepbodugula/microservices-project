@@ -9,9 +9,9 @@ This project showcases a complete microservices architecture using Docker, Kuber
 | Service              | Description                                        | Language         | Containerization | K8s Deployment | Helm Chart |
 |----------------------|----------------------------------------------------|------------------|------------------|----------------|------------|
 | `auth-service`       | Auth & token issuing service                      | Python (Flask)   | ✅ Multi-stage    | ✅              | ✅          |
-| `review-service`     | Peer review and feedback system                   | Java (Spring)    | ✅                | ✅              | ✅          |
-| `publication-service`| Handles content publishing and article mgmt       | Node.js (Express)| ✅                | ✅              | ✅          |
-| `frontend`           | UI to interact with services                      | React            | ✅                | ✅              | (Planned)   |
+| `review-service`     | Peer review and feedback system                   | Java Maven       | ✅                | ✅              | ✅          |
+| `publication-service`| Handles content publishing and article mgmt       | Go               | ✅                | ✅              | ✅          |
+| `frontend`           | UI to interact with services                      | Html             | ✅                | ✅              | (Planned)   |
 | `mysql`              | Persistent relational database                    | MySQL            | ✅                | ✅              | (via YAML)  |
 
 ---
