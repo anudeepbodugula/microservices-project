@@ -61,6 +61,7 @@ jobs:
             sudo chmod +x /usr/bin/yq
         
         - name: Update Helm values.yaml with new image tag
+          working-directory: helm/auth-service
           run: |
             yq -i '.image.repository = "${{ env.IMAGE_NAME }}"' helm/auth-service/values.yaml
             yq -i '.image.tag = "${{ env.SHORT_SHA }}"' helm/auth-service/values.yaml
