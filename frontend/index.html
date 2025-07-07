@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MyProject Microservices</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">MyProject</div>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/auth/health">Auth</a></li>
+      <li><a href="/user/health">User</a></li>
+      <li><a href="/review/health">Review</a></li>
+      <li><a href="/publication/health">Publication</a></li>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <h1>Welcome to MyProject Microservices</h1>
+    <p>
+      This project demonstrates a microservices architecture where each service is independently developed,
+      containerized using Docker, and orchestrated via Docker Compose. Traffic is routed through a centralized
+      NGINX reverse proxy, simulating a production-like environment for scalable and modular applications.
+    </p>
+    <p><strong>Technologies used:</strong> Docker, Docker Compose, NGINX, Node.js, Python (Flask), Java (Spring Boot), Go, MySQL.</p>
+  </header>
+
+  <!-- Services Overview -->
+  <section class="service-grid">
+    <!-- Auth Service -->
+    <div class="service-card">
+      <h3>Auth Service</h3>
+      <p>Python (Flask) + MySQL</p>
+      <a href="/auth/health" class="btn">Health</a>
+      <a href="/auth/db-health" class="btn">DB Health</a>
+    </div>
+
+    <!-- User Service -->
+    <div class="service-card">
+      <h3>User Service</h3>
+      <p>Node.js + MySQL</p>
+      <a href="/user/health" class="btn">Health</a>
+      <a href="/user/db-health" class="btn">DB Health</a>
+    </div>
+
+    <!-- Review Service -->
+    <div class="service-card">
+      <h3>Review Service</h3>
+      <p>Java (Spring Boot) + MySQL</p>
+      <a href="/review/health" class="btn">Health</a>
+      <a href="/review/db-health" class="btn">DB Health</a>
+    </div>
+
+    <!-- Publication Service -->
+    <div class="service-card">
+      <h3>Publication Service</h3>
+      <p>Go + MySQL</p>
+      <a href="/publication/health" class="btn">Health</a>
+      <a href="/publication/db-health" class="btn">DB Health</a>
+    </div>
+  </section>
+
+  <!-- Logo 
+  <div style="text-align: center; margin-top: 40px;">
+    <img src="/logo.png" alt="MyProject Logo" class="logo-img">
+  </div> -->
+</body>
+</html>

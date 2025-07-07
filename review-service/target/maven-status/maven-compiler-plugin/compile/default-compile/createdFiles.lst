@@ -1,0 +1,9 @@
+com/jmir/review/DatabaseHealthService.class
+com/jmir/review/service/ReviewService.class
+com/jmir/review/model/Review.class
+com/myproject/review/Review.class
+com/myproject/review/ReviewServiceApplication.class
+com/jmir/review/ReviewServiceApplication.class
+com/jmir/review/repository/ReviewRepository.class
+com/jmir/review/controller/ReviewController.class
+com/jmir/review/HealthController.class

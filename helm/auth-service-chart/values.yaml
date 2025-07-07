@@ -1,0 +1,47 @@
+# -- Number of pod replicas
+replicaCount: 2
+
+# Image configuration
+image:
+  repository: anudeepbm1993/auth-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+# -- Kubernetes Service configuration
+service:
+  type: ClusterIP
+  port: 5001  
+
+# -- Port exposed by the container
+containerPort: 5001
+
+# -- Resource requests and limits
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "200m"
+    memory: "256Mi"
+
+# -- Probes
+readinessProbe:
+  path: /health
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+livenessProbe:
+  path: /db-health
+  initialDelaySeconds: 10
+  periodSeconds: 30
+
+# -- db secret
+db:
+  host: "mysql.dev.svc.cluster.local"
+  port: "3306"
+  name: "myproject"
+  user: "myproject_user"
+  password: "123"
+
+ingress:
+  enabled: false

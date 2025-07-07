@@ -1,0 +1,87 @@
+
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: myproject
+      MYSQL_USER: myproject_user
+      MYSQL_PASSWORD: 123
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  review-service:
+    build: ./review-service
+    container_name: review-service
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/myproject
+      SPRING_DATASOURCE_USERNAME: myproject_user
+      SPRING_DATASOURCE_PASSWORD: 123
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+    ports:
+      - "8080:8080"
+
+  auth-service:
+    build: ./auth-service
+    container_name: auth-service
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: myproject
+      DB_USER: myproject_user
+      DB_PASS: 123
+    ports:
+      - "5001:5001"
+
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    ports:
+      - "3000:3000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: myproject
+      DB_USER: myproject_user
+      DB_PASS: 123
+
+  publication-service:
+    build: ./publication-service
+    container_name: publication-service
+    ports:
+      - "5002:5002"
+
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    container_name: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - review-service
+      - auth-service
+      - user-service
+      - publication-service
+
+volumes:
+  mysql-data:

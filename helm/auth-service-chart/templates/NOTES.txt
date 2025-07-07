@@ -1,0 +1,35 @@
+Thank you for installing the {{ include "auth-service.name" . }} chart! 🚀
+
+This service has been deployed into the {{ .Release.Namespace }} namespace
+with the name: {{ include "auth-service.fullname" . }}
+
+---
+
+🧪 To test if the service is running:
+
+  kubectl get pods -n {{ .Release.Namespace }} -l app={{ include "auth-service.name" . }}
+
+🔁 To follow logs:
+
+  kubectl logs -n {{ .Release.Namespace }} -l app={{ include "auth-service.name" . }} --tail=100 -f
+
+---
+
+🔒 Your service is exposed as a ClusterIP (internal access only).
+To test it locally, use port forwarding:
+
+  kubectl port-forward svc/{{ include "auth-service.fullname" . }} 8080:{{ .Values.service.port }} -n {{ .Release.Namespace }}
+
+Then visit in your browser:
+
+  http://localhost:8080/health
+  http://localhost:8080/db-health
+
+---
+
+💡 Next Steps:
+
+- If you plan to expose this externally, consider enabling Ingress in values.yaml
+- You can install this chart in other namespaces with: --namespace <name>
+
+Happy DevOps'ing! 🎯
