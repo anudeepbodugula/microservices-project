@@ -63,8 +63,8 @@ jobs:
         - name: Update Helm values.yaml with new image tag
           working-directory: helm/auth-service-chart
           run: |
-            yq -i '.image.repository = "${{ env.IMAGE_NAME }}"' auth-service-chart/values.yaml
-            yq -i '.image.tag = "${{ env.SHORT_SHA }}"' auth-service-chart/values.yaml
+            yq -i '.image.repository = "${{ env.IMAGE_NAME }}"' values.yaml
+            yq -i '.image.tag = "${{ env.SHORT_SHA }}"' values.yaml
 
         - name: Commit and push changes to values.yaml
           run: |
